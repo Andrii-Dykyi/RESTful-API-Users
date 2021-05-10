@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+psycopg2-binary = "*"
+djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+loguru = "*"
+python-socketio = "*"
+eventlet = "==0.30.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
