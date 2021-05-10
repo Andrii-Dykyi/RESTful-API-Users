@@ -1,0 +1,35 @@
+version: '3.8'
+
+
+services:
+  app:
+    build:
+        context: .
+        dockerfile: docker/app/Dockerfile
+    environment:
+        - DJANGO_SETTINGS_MODULE=project.settings
+        - LC_ALL=C.UTF-8
+        - LANG=C.UTF-8
+    depends_on:
+        - postgres
+    ports:
+        - 8000:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
+
+  frontend:
+      build:
+        context: .
+        dockerfile: docker/nginx/Dockerfile
+      depends_on: 
+        - app
+      ports: 
+        - 8080:80
+
+  postgres:
+    image: postgres:12.4
+    environment:
+      POSTGRES_USER: usersAPI_User
+      POSTGRES_DB: usersAPI_DB
+      POSTGRES_PASSWORD: usersAPI_Password
+    ports:
+      - 5430:5432
